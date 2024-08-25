@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm">
+          <div class="card-header">
+            <h2 class="text-center">Search Vaccination Centers</h2>
+          </div>
+          <div class="card-body">
+            <form method="get" action="{% url 'search_centers' %}">
+              <div class="input-group mb-4">
+                <input type="text" name="query" class="form-control" placeholder="Enter center name" value="{{ query }}" />
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </form>
+            <hr class="text-primary" />
+            {% if centers %}
+              <ul class="list-unstyled">
+                {% for center in centers %}
+                  <li class="mb-3">
+                    <strong>{{ center.name }}</strong><br />
+                    Address: {{ center.address }}<br />
+                    Working Hours: {{ center.working_hours }}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>No centers found for the query "{{ query }}".</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

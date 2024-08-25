@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center">Sign Up</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          {% if form.errors %}
+            <div class="alert alert-danger" role="alert">Please correct the errors below.</div>
+          {% endif %}
+          <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+              {{ form.username.label_tag }}
+              {{ form.username }}
+              {% if form.username.errors %}
+                <div class="invalid-feedback d-block">{{ form.username.errors|striptags }}</div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ form.email.label_tag }}
+              {{ form.email }}
+              {% if form.email.errors %}
+                <div class="invalid-feedback d-block">{{ form.email.errors|striptags }}</div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ form.password1.label_tag }}
+              {{ form.password1 }}
+              {% if form.password1.errors %}
+                <div class="invalid-feedback d-block">{{ form.password1.errors|striptags }}</div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              {{ form.password2.label_tag }}
+              {{ form.password2 }}
+              {% if form.password2.errors %}
+                <div class="invalid-feedback d-block">{{ form.password2.errors|striptags }}</div>
+              {% endif %}
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()" />
+              <label class="form-check-label" for="showPassword">Show Password</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      function togglePassword() {
+        const password1 = document.getElementById('id_password1')
+        const password2 = document.getElementById('id_password2')
+        const showPassword = document.getElementById('showPassword')
+      
+        if (showPassword.checked) {
+          password1.type = 'text'
+          password2.type = 'text'
+        } else {
+          password1.type = 'password'
+          password2.type = 'password'
+        }
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm">
+          <div class="card-header">
+            <h2 class="text-center mb-0">Dosage Details</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Center Name</th>
+                    <th>Total Dosages Given</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for center in centers %}
+                    <tr>
+                      <td>{{ center.name }}</td>
+                      <td>{{ center.dosages_given }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
